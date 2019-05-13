@@ -1,0 +1,12 @@
+{
+  "author": "Julian L",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/api/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "mustache-express": "^1.2.8",
+    "uuid": "^3.3.2"
+  }
+}
