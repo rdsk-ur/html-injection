@@ -2,20 +2,7 @@ const express = require('express');
 const uuid = require('uuid/v4');
 const mustacheExpress = require('mustache-express');
 
-let submissions = [
-  {
-    title: 'Example 1',
-    url: 'blabla',
-    comment: 'aha',
-    uuid: 'a',
-  },
-  {
-    title: 'Example 2',
-    url: 'blabla',
-    comment: 'next comment',
-    uuid: 'b',
-  },
-];
+let submissions = [];
 
 const app = express();
 const port = 3000;
@@ -26,7 +13,6 @@ app.use('/', express.static('src/static'));
 // register the .mustache extension
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
-
 app.set('views', 'src/templates');
 
 app.get('/api/list', (req, res) => {
@@ -43,9 +29,11 @@ app.get('/submissions', (req, res) => {
 });
 
 app.post('/api/submit', (req, res) => {
-  if (req.body.title !== undefined && req.body.comment !== undefined && req.body.url !== undefined) {
+  if (req.body.title !== undefined && req.body.comment !== undefined &&
+      req.body.url !== undefined && req.body.user !== undefined) {
     const newSub = {
       title: req.body.title,
+      user: req.body.user,
       comment: req.body.comment,
       url: req.body.url,
       uuid: uuid(),

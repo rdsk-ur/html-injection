@@ -11,6 +11,7 @@ function loadCatImg() {
 
 const title = document.getElementsByName('title')[0];
 const comment = document.getElementsByName('comment')[0];
+const user = document.getElementsByName('user')[0];
 
 loadCatImg();
 
@@ -22,6 +23,7 @@ document.querySelector('#submit').addEventListener('click', () => {
     },
     body: JSON.stringify({
       title: title.value,
+      user: user.value,
       comment: comment.value,
       url: catUrl,
     }),
@@ -30,6 +32,7 @@ document.querySelector('#submit').addEventListener('click', () => {
     .then(() => {
       title.value = '';
       comment.value = '';
+      user.value = '';
       loadCatImg();
     });
 });
